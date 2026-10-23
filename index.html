@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HAIR PLAY by Phia</title>
+  <style>
+    body {
+      margin: 0;
+      background: #080808;
+      color: #d4af37;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 24px 12px;
+    }
+    h1 { font-size: 28px; }
+    p { color: #f5e6a8; }
+    #cards {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      max-width: 520px;
+      margin: 24px auto;
+    }
+    .card {
+      background: #171717;
+      border: 1px solid #d4af37;
+      color: #f5d76e;
+      border-radius: 8px;
+      padding: 14px 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .card:disabled { opacity: .65; cursor: default; }
+    footer { color: #bca65c; font-size: 11px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <h1>COME AND TRY YOUR LUCK</h1>
+  <p>PICK A NUMBER YOU MIGHT BE LUCKY</p>
+  <p id="message">Choose a number to try the demo.</p>
+  <div id="cards"></div>
+  <footer>__ HAIR PLAY by Phia</footer>
+
+  <script>
+    const cards = document.getElementById("cards");
+    const message = document.getElementById("message");
+
+    for (let number = 1; number <= 100; number++) {
+      const button = document.createElement("button");
+      button.className = "card";
+      button.textContent = number;
+      button.addEventListener("click", () => {
+        message.textContent =
+          "You picked number " + number + "! Demo only — no prize has been awarded.";
+        document.querySelectorAll(".card").forEach(card => {
+          card.disabled = true;
+        });
+      });
+      cards.appendChild(button);
+    }
+  </script>
+</body>
+</html>
